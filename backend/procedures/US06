@@ -1,0 +1,14 @@
+ALTER PROCEDURE "DBA"."US06"()
+    BEGIN
+
+SELECT count(resultatTest) as resultA ,ville.codeP,ville
+    FROM covideTest 
+        JOIN pasient
+        JOIN visite
+        JOIN ville
+
+WHERE resultatTest = 1
+
+GROUP BY ville.codeP, ville
+
+END
