@@ -1,0 +1,7 @@
+ALTER PROCEDURE "DBA"."US08"(in id INTEGER, codePost INTEGER, dateId date) 
+    BEGIN 
+    
+    INSERT INTO visite(idPasient, codeP, dateVisite)
+    VALUES(id, codePost,dateId)
+
+END
