@@ -1,0 +1,7 @@
+ALTER PROCEDURE "DBA"."US05"(in IdP INTEGER , dateT date ,dateE date ,resultA INTEGER) 
+    BEGIN 
+
+        INSERT INTO covideTest(idTest, dateTest, expiration, resultatTest)
+        VALUES (IdP, dateT, dateE, resultA)
+
+    END
