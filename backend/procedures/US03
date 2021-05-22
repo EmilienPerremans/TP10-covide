@@ -1,0 +1,9 @@
+ALTER PROCEDURE "DBA"."US03"()
+BEGIN 
+    --
+
+        SELECT id, prenom, nom, dateDeNaissance,resultatTest 
+        FROM pasient
+           LEFT JOIN covideTest
+    --
+END
