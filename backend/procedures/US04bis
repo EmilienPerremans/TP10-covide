@@ -1,0 +1,7 @@
+ALTER PROCEDURE "DBA"."US04bis"()
+BEGIN 
+
+SELECT nom, prenom, id
+from pasient
+
+end
