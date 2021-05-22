@@ -1,0 +1,86 @@
+"use strict";
+
+function initialiserPageTest(){
+    let rep;
+    let xhr = new XMLHttpRequest();
+    xhr.open('get','http://localhost:82/recupererPersonnes', true);
+    xhr.onload = function (){
+        let personnes = JSON.parse(xhr.responseText);
+        for(let i in personnes){
+            if(personnes[i].resultatTest == 1){
+                rep = 'oui';
+            }
+            else if(personnes[i].resultatTest == 0) {
+                rep = 'non';
+            }
+            else {
+                rep = 'non tester';
+            }
+
+            document.getElementById("tbodyPersonnes").innerHTML += "<th>" + personnes[i].id + "</th>"  + "<th>" + personnes[i].nom +"</th>" + "<th>" + personnes[i].prenom + "</th>"  + "<th>" + personnes[i].dateDeNaissance + "</th>" + "<th>" + rep +"</th>";
+        }
+    }
+    xhr.send();
+    return false;
+}
+
+
+function ajouterPersonne(formulairePersonnes){
+    let prenom = formulairePersonnes.prenomPersonne.value ;
+    let nom = formulairePersonnes.nomPersonne.value ;
+    let date = formulairePersonnes.dateNaissance.value ;
+    let sexe = formulairePersonnes.sexePersonne.value ;
+
+    let p = new XMLHttpRequest();
+    p.open('get','http://localhost:82/enregistrerPersonnes?nom='+nom+'&prenom='+prenom+'&sexe='+sexe+'&dateD='+date, true);
+
+   p.onload = function(){
+        if (p.readyState == 4){console.log("ok");}
+        else{console.log("0");}
+    }
+
+    p.send();
+    return false;
+}
+
+
+function initialiserPagePersonnes(){
+    let x = new XMLHttpRequest();
+    x.open('get','http://localhost:82/US04bis', true);
+    x.onload = function (){
+        let nomP = JSON.parse(x.responseText);
+        for(let i in nomP){
+            document.getElementById('personneTestCovid').innerHTML += "<option value='" + nomP[i].id + "'>" + nomP[i].nom + " " + nomP[i].prenom + "</option>";
+        }
+    }
+    x.send();
+    return false;
+}
+
+
+function ajouterTestCovid(formulaireCovid) {
+    let iPersonne = formulaireCovid.personneTestCovid.value;
+    let resultat1 = formulaireCovid.resultatTestCovid.value;
+    let dateTest = formulaireCovid.dateTestCovid.value;
+    let dateExpiration = formulaireCovid.dateExpirationTestCovid.value;
+
+    let resultat = Number(resultat1);
+    let idPersonne = Number(iPersonne);
+
+    console.log(idPersonne);
+    console.log(resultat);
+    console.log(dateTest);
+    console.log(dateExpiration);
+
+
+
+    let k = new XMLHttpRequest();
+    k.open('get','http://localhost:82/enregisterTestCovide?idP='+idPersonne+'&dateT='+dateTest+'&dateEx='+dateExpiration+'&results='+resultat,true);
+    k.onload = function(){
+        if (k.readyState == 4){console.log("ok");}
+        else{console.log("0");}
+    }
+    k.send();
+    return false;
+
+}
