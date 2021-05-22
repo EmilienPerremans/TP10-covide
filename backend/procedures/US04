@@ -1,0 +1,6 @@
+ALTER PROCEDURE "DBA"."US04"(in nomId VARCHAR(60), prenomId VARCHAR(60), sexeId VARCHAR(1),dateId date)
+    BEGIN 
+
+        INSERT INTO pasient(nom, prenom,sexe,dateDeNaissance)
+        VALUES (nomId, prenomId,sexeId,dateId)
+END
