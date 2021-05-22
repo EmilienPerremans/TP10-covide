@@ -1,0 +1,9 @@
+ALTER PROCEDURE "DBA"."US06bis"()
+    BEGIN
+
+SELECT count(resultatTest) as resul
+    FROM covideTest 
+
+WHERE resultatTest = 1
+
+END
